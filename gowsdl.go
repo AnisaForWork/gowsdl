@@ -205,9 +205,9 @@ func (g *GoWSDL) unmarshal() error {
 	if err != nil {
 		return err
 	}
-	g.wsdl.MessageMap = map[string]bool{}
 
 	g.wsdl = new(WSDL)
+	g.wsdl.MessageMap = map[string]bool{}
 	err = xml.Unmarshal(data, g.wsdl)
 	if err != nil {
 		return err
