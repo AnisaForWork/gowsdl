@@ -200,7 +200,7 @@ var typesTmpl = `
 		{{if and (eq (len .SimpleContent.Extension.Attributes) 0) (eq (toGoType .SimpleContent.Extension.Base false) "string") }}
 			type {{$typeName}} string
 		{{else}}
-			type {{$typeName}}Test struct {
+			type {{$typeName}} struct {
 				{{$type := findNameByType .Name}} 
 					XMLName xml.Name ` + "`xml:\"{{$targetNamespace}} {{$type}}\"`" + `
 				{{if ne .ComplexContent.Extension.Base ""}}
