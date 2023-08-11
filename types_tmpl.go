@@ -201,6 +201,7 @@ var typesTmpl = `
 			type {{$typeName}} string
 		{{else}}
 			type {{$typeName}}Test struct {
+				{{$type := findNameByType .Name}} 
 					XMLName xml.Name ` + "`xml:\"{{$targetNamespace}} {{$type}}\"`" + `
 				{{if ne .ComplexContent.Extension.Base ""}}
 					{{template "ComplexContent" .ComplexContent}}
