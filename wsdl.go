@@ -78,6 +78,7 @@ Loop:
 					if err := d.DecodeElement(x, &t); err != nil {
 						return err
 					}
+					w.MessageMap[x.Name] = true
 					w.Messages = append(w.Messages, x)
 				case "portType":
 					x := new(WSDLPortType)
