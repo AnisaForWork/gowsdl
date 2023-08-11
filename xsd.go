@@ -25,6 +25,7 @@ type XSDSchema struct {
 	Attributes         []*XSDAttribute   `xml:"attribute"`
 	ComplexTypes       []*XSDComplexType `xml:"complexType"` // global
 	SimpleType         []*XSDSimpleType  `xml:"simpleType"`
+	MsgMap             map[string]bool
 }
 
 // UnmarshalXML implements interface xml.Unmarshaler for XSDSchema.
@@ -91,6 +92,7 @@ Loop:
 				if err := d.DecodeElement(x, &t); err != nil {
 					return err
 				}
+				x.IsInWsdl = s.MsgMap[x.Name]
 				s.ComplexTypes = append(s.ComplexTypes, x)
 			case "simpleType":
 				x := new(XSDSimpleType)
@@ -161,6 +163,7 @@ type XSDComplexType struct {
 	SimpleContent  XSDSimpleContent  `xml:"simpleContent"`
 	Attributes     []*XSDAttribute   `xml:"attribute"`
 	Any            []*XSDAny         `xml:"sequence>any"`
+	IsInWsdl       bool
 }
 
 // XSDGroup element is used to define a group of elements to be used in complex type definitions.

@@ -20,6 +20,7 @@ type WSDL struct {
 	PortTypes       []*WSDLPortType   `xml:"http://schemas.xmlsoap.org/wsdl/ portType"`
 	Binding         []*WSDLBinding    `xml:"http://schemas.xmlsoap.org/wsdl/ binding"`
 	Service         []*WSDLService    `xml:"http://schemas.xmlsoap.org/wsdl/ service"`
+	MessageMap      map[string]bool
 }
 
 // UnmarshalXML implements interface xml.Unmarshaler for XSDSchema.

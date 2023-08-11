@@ -205,6 +205,7 @@ func (g *GoWSDL) unmarshal() error {
 	if err != nil {
 		return err
 	}
+	g.wsdl.MessageMap = map[string]bool{}
 
 	g.wsdl = new(WSDL)
 	err = xml.Unmarshal(data, g.wsdl)
@@ -249,6 +250,7 @@ func (g *GoWSDL) resolveXSDExternals(schema *XSDSchema, loc *Location) error {
 		if err != nil {
 			return err
 		}
+		newschema.MsgMap = g.wsdl.MessageMap
 
 		if (len(newschema.Includes) > 0 || len(newschema.Imports) > 0) &&
 			maxRecursion > g.currentRecursionLevel {
