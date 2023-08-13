@@ -202,7 +202,7 @@ var typesTmpl = `
 		{{else}}
 			type {{$typeName}} struct {
 				{{$type := findNameByType .Name}}  
-				{{if or (ne .Name $type) (.IsInWsdl)}}
+				{{if .IsInWsdl}}
 					XMLName xml.Name ` + "`xml:\"{{$targetNamespace}} {{$type}}\"`" + `
 				{{end}}
 					
